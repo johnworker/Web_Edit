@@ -1,0 +1,103 @@
+/*
+Theme Name: marketing
+Theme URI: none
+Description: marketingbusiness
+Author: dark
+Author URI: none
+Version: 1.0
+Tags: one page website
+License: MIT
+License URI: mit
+*/
+
+$very_big_desk: 1330px; //大型電腦尺寸
+$big_desk: 1248px; //中型電腦尺寸
+$desk: 1024px; //小型電腦尺寸
+$tablets: 960px; //平板尺寸 (ipad)
+$mobile: 767px; //手機尺寸
+
+.post_section {
+    border: 1px solid #ddd;
+
+    @media screen and (min-width: $mobile) {
+        width: 420px;
+        float: left;
+        margin: 20px 5px;
+        padding: 20px;
+    }
+
+    @media screen and (max-width: $mobile) {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .post_header {
+        h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;        
+        }
+    }
+
+    .post_images {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        margin-top: 20px;
+        gap: 10px;
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            // justify-content: space-between;
+        }
+        
+        img {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ddd;
+            object-fit: cover;
+
+            @media screen and (max-width: $mobile) {
+                width: 180px;
+            }
+        
+        }
+    }
+}
+
+#saveButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    bottom: 140px;
+}
+
+#addImageButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+}
+
+#sectionSelector {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}

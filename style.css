@@ -1,0 +1,91 @@
+/*
+Theme Name: marketing
+Theme URI: none
+Description: marketingbusiness
+Author: dark
+Author URI: none
+Version: 1.0
+Tags: one page website
+License: MIT
+License URI: mit
+*/
+.post_section {
+  border: 1px solid #ddd;
+}
+@media screen and (min-width: 767px) {
+  .post_section {
+    width: 420px;
+    float: left;
+    margin: 20px 5px;
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .post_section {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+.post_section .post_header h2 {
+  font-size: 24px;
+  color: #333;
+}
+.post_section .post_header p {
+  font-size: 16px;
+  color: #666;
+}
+.post_section .post_images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-top: 20px;
+  gap: 10px;
+}
+.post_section .post_images .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.post_section .post_images img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ddd;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (max-width: 767px) {
+  .post_section .post_images img {
+    width: 180px;
+  }
+}
+
+#saveButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  bottom: 140px;
+}
+
+#addImageButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  bottom: 70px;
+}
+
+#sectionSelector {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}/*# sourceMappingURL=style.css.map */
