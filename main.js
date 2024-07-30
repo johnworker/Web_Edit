@@ -1,5 +1,8 @@
 window.addEventListener('load', function () {
     // 加載已保存的內容
+    if (localStorage.getItem('today_mark')) {
+        document.querySelector('.today_mark').innerHTML = localStorage.getItem('today_mark');
+    }
     if (localStorage.getItem('post_header')) {
         document.querySelector('.post_header').innerHTML = localStorage.getItem('post_header');
     }
@@ -10,6 +13,7 @@ window.addEventListener('load', function () {
     // 在保存按鈕上設置事件監聽器
     document.getElementById('saveButton').addEventListener('click', function () {
         const updatedContent = {
+            posttitle: document.querySelector('.today_mark').innerHTML,
             postHeader: document.querySelector('.post_header').innerHTML,
             postImages: document.querySelector('.post_images').innerHTML
         };

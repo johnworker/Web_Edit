@@ -11,7 +11,7 @@ const FILE_PATH = 'index.html';
 app.use(bodyParser.json());
 
 app.post('/save', (req, res) => {
-    const { postHeader, postImages } = req.body;
+    const { title,postHeader, postImages } = req.body;
 
     // 構建新的HTML內容
     const newContent = `<!DOCTYPE html>
@@ -20,6 +20,7 @@ app.post('/save', (req, res) => {
     <title>貼文編輯器</title>
 </head>
 <body>
+<h1 class="today_mark" contenteditable="true">${title}</h1>
     <div class="post_header">${postHeader}</div>
     <div class="post_images">${postImages}</div>
 </body>
