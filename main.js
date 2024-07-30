@@ -7,13 +7,26 @@ window.addEventListener('load', function () {
         document.querySelector('.post_images').innerHTML = localStorage.getItem('post_images');
     }
 
-    // 保存變更
+    // 在保存按鈕上設置事件監聽器
     document.getElementById('saveButton').addEventListener('click', function () {
-        localStorage.setItem('post_header', document.querySelector('.post_header').innerHTML);
-        localStorage.setItem('post_images', document.querySelector('.post_images').innerHTML);
-        alert('變更已保存！');
+        const updatedContent = {
+            postHeader: document.querySelector('.post_header').innerHTML,
+            postImages: document.querySelector('.post_images').innerHTML
+        };
+
+        // 發送更新到後端伺服器
+        fetch('/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedContent)
+        })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('錯誤:', error));
     });
-    
+
     // 處理圖片替換和刪除
     function setupImageActions(img) {
         let lastTouchTime = 0;
@@ -76,13 +89,13 @@ window.addEventListener('load', function () {
                     const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
 
                     if (targetSection && targetSection.children.length < 2) {
-                    targetSection.appendChild(newImg); // 添加到當前行
-                } else {
-                    const newRow = document.createElement('div');
-                    newRow.classList.add('row');
-                    newRow.appendChild(newImg); // 新建行並添加圖片
-                    document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
-                }
+                        targetSection.appendChild(newImg); // 添加到當前行
+                    } else {
+                        const newRow = document.createElement('div');
+                        newRow.classList.add('row');
+                        newRow.appendChild(newImg); // 新建行並添加圖片
+                        document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
+                    }
 
                     setupImageActions(newImg);
                     setupDragAndDrop(newImg);
