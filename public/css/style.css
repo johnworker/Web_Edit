@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.today_mark {
+    text-align: center;
+    margin: 20px;
+}
+
+.post_section {
+    margin: 20px;
+}
+
+.post_header {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.post_images .row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.post_images img {
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+}

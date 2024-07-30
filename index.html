@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貼文編輯器</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <h1 class="today_mark" contenteditable="true">今日記錄重要事項</h1>
+    <div class="post_section" id="section1">
+        <div class="post_header" contenteditable="true">
+            <h2>🚀信享｜幸福｜信服🚀</h2>
+            <p>...</p> <!-- 預設內容可根據需求編輯 -->
+        </div>
+        <div class="post_images">
+            <div class="row">
+                <img class="img_one" src="./images/build_one.jpg" alt="Image 1" contenteditable="true">
+                <img class="img_two" src="./images/build_two.jpg" alt="Image 2" contenteditable="true">
+            </div>
+            <!-- 其他圖片 -->
+        </div>
+    </div>
+    <!-- 其他貼文區域 -->
+
+    <form id="saveForm" method="POST" action="/save">
+        <input type="hidden" name="content" id="contentInput">
+        <button type="submit">保存變更</button>
+    </form>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageUpload" accept="image/*">
+        <button type="button" onclick="uploadImage()">上傳圖片</button>
+    </form>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
