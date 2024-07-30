@@ -13,12 +13,11 @@ window.addEventListener('load', function () {
     // 在保存按鈕上設置事件監聽器
     document.getElementById('saveButton').addEventListener('click', function () {
         const updatedContent = {
-            posttitle: document.querySelector('.today_mark').innerHTML,
+            title: document.querySelector('.today_mark').innerHTML,
             postHeader: document.querySelector('.post_header').innerHTML,
             postImages: document.querySelector('.post_images').innerHTML
         };
 
-        // 發送更新到後端伺服器
         fetch('/save', {
             method: 'POST',
             headers: {
@@ -28,8 +27,9 @@ window.addEventListener('load', function () {
         })
             .then(response => response.text())
             .then(data => alert(data))
-            .catch(error => console.error('錯誤:', error));
+            .catch(error => console.error('保存失敗:', error));
     });
+
 
     // 處理圖片替換和刪除
     function setupImageActions(img) {

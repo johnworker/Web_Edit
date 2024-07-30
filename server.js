@@ -10,44 +10,60 @@ const FILE_PATH = 'index.html';
 
 app.use(bodyParser.json());
 
-app.post('/save', (req, res) => {
-    const { title,postHeader, postImages } = req.body;
+app.post('/save', async (req, res) => {
+    const { title, postHeader, postImages } = req.body;
 
-    // 構建新的HTML內容
     const newContent = `<!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貼文編輯器</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<h1 class="today_mark" contenteditable="true">${title}</h1>
-    <div class="post_header">${postHeader}</div>
-    <div class="post_images">${postImages}</div>
+    <h1 class="today_mark" contenteditable="true">${title}</h1>
+    <div class="post_section" id="section1">
+        <div class="post_header" contenteditable="true">${postHeader}</div>
+        <div class="post_images" contenteditable="true">${postImages}</div>
+    </div>
+    <button id="saveButton">保存變更</button>
+    <script src="./main.js"></script>
 </body>
 </html>`;
 
-    // 使用GitHub API更新文件
-    fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-        method: 'PUT',
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            message: 'Update index.html',
-            content: Buffer.from(newContent).toString('base64'),
-            sha: 'current_sha_of_the_file' // 需要獲取當前文件的SHA
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.commit) {
-            res.send('變更已保存');
+    try {
+        // 獲取當前文件的SHA
+        const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`
+            }
+        });
+        const fileData = await response.json();
+        const sha = fileData.sha;
+
+        // 更新文件內容
+        const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Update index.html',
+                content: Buffer.from(newContent).toString('base64'),
+                sha: sha
+            })
+        });
+
+        if (updateResponse.ok) {
+            res.send('變更已成功保存！');
         } else {
-            res.status(500).send('保存失敗');
+            res.status(500).send('更新失敗');
         }
-    })
-    .catch(error => res.status(500).send('錯誤: ' + error.message));
+    } catch (error) {
+        res.status(500).send('錯誤: ' + error.message);
+    }
 });
 
 app.listen(3000, () => {
