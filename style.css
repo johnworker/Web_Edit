@@ -11,6 +11,7 @@ License URI: mit
 */
 .post_section {
   border: 1px solid #ddd;
+  width: 420px;
 }
 @media screen and (min-width: 767px) {
   .post_section {

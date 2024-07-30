@@ -18,6 +18,7 @@ $mobile: 767px; //手機尺寸
 
 .post_section {
     border: 1px solid #ddd;
+    width: 420px;
 
     @media screen and (min-width: $mobile) {
         width: 420px;
