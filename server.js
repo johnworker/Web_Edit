@@ -1,3 +1,5 @@
+const cors = require('cors');
+app.use(cors());
 const express = require('express');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch'); // 用於調用GitHub API
