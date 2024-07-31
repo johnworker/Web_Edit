@@ -10,7 +10,11 @@ const REPO_OWNER = 'johnworker';
 const REPO_NAME = 'Web_Edit';
 const FILE_PATH = 'index.html';
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://web-edit-psi.vercel.app', // 允許前端域名的請求
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json());
 
 app.post('/save', async (req, res) => {
