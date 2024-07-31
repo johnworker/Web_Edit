@@ -11,7 +11,7 @@ const REPO_NAME = 'Web_Edit';
 const FILE_PATH = 'index.html';
 
 app.use(cors({
-    origin: 'https://web-edit-psi.vercel.app', // 允許前端域名的請求
+    origin: 'https://web-edit-git-main-darkness-projects-4ba22d35.vercel.app/', // 允許前端域名的請求
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
