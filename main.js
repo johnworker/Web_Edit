@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
             postHeader: document.querySelector('.post_header').innerHTML,
             postImages: document.querySelector('.post_images').innerHTML
         };
-
+    
         fetch('/save', {
             method: 'POST',
             headers: {
@@ -25,10 +25,11 @@ window.addEventListener('load', function () {
             },
             body: JSON.stringify(updatedContent)
         })
-            .then(response => response.text())
-            .then(data => alert(data))
-            .catch(error => console.error('保存失敗:', error));
+        .then(response => response.text())
+        .then(data => alert(data))
+        .catch(error => console.error('保存失敗:', error));
     });
+    
 
 
     // 處理圖片替換和刪除
