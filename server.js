@@ -35,7 +35,7 @@ app.post('/save', async (req, res) => {
         <div class="post_header" contenteditable="true">${postHeader}</div>
         <div class="post_images" contenteditable="true">${postImages}</div>
     </div>
-    <div class="post_section" id="section3">
+        <div class="post_section" id="section3">
         <div class="post_header" contenteditable="true">${postHeader}</div>
         <div class="post_images" contenteditable="true">${postImages}</div>
     </div>
