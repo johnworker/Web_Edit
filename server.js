@@ -21,11 +21,21 @@ app.post('/save', async (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貼文編輯器</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <h1 class="today_mark" contenteditable="true">${title}</h1>
     <div class="post_section" id="section1">
+        <div class="post_header" contenteditable="true">${postHeader}</div>
+        <div class="post_images" contenteditable="true">${postImages}</div>
+    </div>
+    <div class="post_section" id="section2">
+        <div class="post_header" contenteditable="true">${postHeader}</div>
+        <div class="post_images" contenteditable="true">${postImages}</div>
+    </div>
+    <div class="post_section" id="section3">
         <div class="post_header" contenteditable="true">${postHeader}</div>
         <div class="post_images" contenteditable="true">${postImages}</div>
     </div>
