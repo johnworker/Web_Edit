@@ -10,6 +10,7 @@ const REPO_OWNER = 'johnworker';
 const REPO_NAME = 'Web_Edit';
 const FILE_PATH = 'index.html';
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/save', async (req, res) => {
@@ -40,6 +41,11 @@ app.post('/save', async (req, res) => {
                 'Authorization': `token ${GITHUB_TOKEN}`
             }
         });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch file data: ${response.statusText}`);
+        }
+
         const fileData = await response.json();
         const sha = fileData.sha;
 
@@ -60,10 +66,12 @@ app.post('/save', async (req, res) => {
         if (updateResponse.ok) {
             res.send('變更已成功保存！');
         } else {
-            res.status(500).send('更新失敗');
+            const errorText = await updateResponse.text();
+            throw new Error(`Failed to update file: ${errorText}`);
         }
     } catch (error) {
-        res.status(500).send('錯誤: ' + error.message);
+        console.error('錯誤:', error);
+        res.status(500).send(`錯誤: ${error.message}`);
     }
 });
 
