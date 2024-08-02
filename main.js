@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
             postImages: document.querySelector('.post_images').innerHTML
         };
     
-        fetch('https://web-edit-psi.vercel.app/save', {
+        fetch('https://web-edit-git-main-darkness-projects-4ba22d35.vercel.app/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
