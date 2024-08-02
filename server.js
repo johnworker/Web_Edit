@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const fetch = require('node-fetch'); // 用於調用GitHub API
 const app = express();
 
-const GITHUB_TOKEN = 'process.env.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';
+const GITHUB_TOKEN = 'process.env.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';
 const REPO_OWNER = 'johnworker';
 const REPO_NAME = 'Web_Edit';
 const FILE_PATH = 'index.html';
