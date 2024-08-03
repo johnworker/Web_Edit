@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/save', async (req, res) => {
+app.post('https://johnworker.github.io/Web_Edit/', async (req, res) => {
   const { title, postHeader, postImages } = req.body;
 
   try {
