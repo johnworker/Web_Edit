@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
             postImages: document.querySelector('.post_images').innerHTML
         };
     
-        fetch('https://johnworker.github.io/Web_Edit/save', {
+        fetch('/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
