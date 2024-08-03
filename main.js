@@ -30,6 +30,7 @@ window.addEventListener('load', function () {
         .catch(error => console.error('保存失敗:', error));
     });
     
+    
     // 處理圖片替換和刪除
     function setupImageActions(img) {
         let lastTouchTime = 0;
