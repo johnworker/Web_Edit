@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
             postImages: document.querySelector('.post_images').innerHTML
         };
     
-        fetch('https://web-edit-git-main-darkness-projects-4ba22d35.vercel.app/', {
+        fetch('/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,8 +30,6 @@ window.addEventListener('load', function () {
         .catch(error => console.error('保存失敗:', error));
     });
     
-
-
     // 處理圖片替換和刪除
     function setupImageActions(img) {
         let lastTouchTime = 0;
