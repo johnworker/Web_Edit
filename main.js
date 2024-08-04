@@ -42,7 +42,7 @@ window.addEventListener('load', async function () {
             if (data && data.length > 0) {
                 const postData = data[0]; // 假設只有一條資料
                 // 設置頁面內容
-                document.querySelector('.today_mark').innerHTML = postData.title || '今日記錄重要事項';
+                document.querySelector('.today_mark').innerHTML = postData.title || '';
                 document.querySelector('.post_header').innerHTML = postData.postHeader || '';
                 document.querySelector('.post_images').innerHTML = postData.postImages || '';
             }
