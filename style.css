@@ -65,6 +65,17 @@ License URI: mit
   cursor: pointer;
   position: fixed;
   right: 10px;
+  bottom: 210px;
+}
+
+#loadButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
   bottom: 140px;
 }
 
