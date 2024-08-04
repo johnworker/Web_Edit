@@ -39,7 +39,7 @@ window.addEventListener('load', async function () {
         try {
             // 發送資料到 Supabase
             const { data, error } = await supabase
-                .from('posts')
+                .from('postedit')
                 .update(updatedContent)
                 .eq('id', 1); // 假設資料表中的資料ID為1
 
