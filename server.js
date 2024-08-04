@@ -16,8 +16,9 @@ app.post('/save', async (req, res) => {
 
   try {
     const { data, error } = await supabase
-      .from('posts')
-      .insert([{ title, postHeader, postImages }]);
+      .from('postedit')
+      .update({ title, postHeader, postImages })
+      .eq('id', 1);
 
     if (error) throw error;
     res.status(200).send('變更已成功保存！');
