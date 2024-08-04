@@ -1,9 +1,10 @@
-// 使用全局的 supabase 變量
-const supabaseUrl = 'https://drpbpxkgediogjcsezvg.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
+// 確保在使用 supabase 之前正確初始化
 window.addEventListener('load', async function () {
+    // 初始化 Supabase 客戶端
+    const supabaseUrl = 'https://drpbpxkgediogjcsezvg.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
     // 從 Supabase 取得初始內容
     const { data, error } = await supabase.from('posts').select('*');
     if (error) {
@@ -23,26 +24,28 @@ window.addEventListener('load', async function () {
         document.querySelectorAll('.post_images img').forEach(setupImageActions);
         document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
     }
-});
 
-document.getElementById('saveButton').addEventListener('click', async function () {
-    const updatedContent = {
-        title: document.querySelector('.today_mark').innerHTML,
-        postHeader: document.querySelector('.post_header').innerHTML,
-        postImages: document.querySelector('.post_images').innerHTML
-    };
+    document.getElementById('saveButton').addEventListener('click', async function () {
+        const updatedContent = {
+            title: document.querySelector('.today_mark').innerHTML,
+            postHeader: document.querySelector('.post_header').innerHTML,
+            postImages: document.querySelector('.post_images').innerHTML
+        };
 
-    // 發送資料到 Supabase
-    const { data, error } = await supabase
-        .from('posts')
-        .update(updatedContent)
-        .eq('id', 1); // 假設資料表中的資料ID為1
+        // 發送資料到 Supabase
+        const { data, error } = await supabase
+            .from('posts')
+            .update(updatedContent)
+            .eq('id', 1); // 假設資料表中的資料ID為1
 
-    if (error) {
-        console.error('保存失敗:', error);
-    } else {
-        alert('變更已成功保存！');
-    }
+        if (error) {
+            console.error('保存失敗:', error);
+        } else {
+            alert('變更已成功保存！');
+        }
+    });
+
+    // 處理圖片替換和刪除等功能的函數...
 });
 
     
