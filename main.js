@@ -69,7 +69,7 @@ window.addEventListener('load', async function () {
             // 發送資料到 Supabase
             const { data, error } = await supabase
                 .from('posts')
-                .upsert({ id: 1, ...updatedContent }); // 使用 upsert 方法，如果記錄存在則更新，否則插入
+                .upsert({ id: 1, updatedContent }); // 使用 upsert 方法，如果記錄存在則更新，否則插入
 
             if (error) {
                 console.error('保存失敗:', error);
