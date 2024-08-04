@@ -6,7 +6,7 @@ window.addEventListener('load', async function () {
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     // 從 Supabase 取得初始內容
-    const { data, error } = await supabase.from('posts').select('*');
+    const { data, error } = await supabase.from('postedit').select('*');
     if (error) {
         console.error('錯誤:', error);
         return;
