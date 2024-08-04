@@ -56,9 +56,6 @@ window.addEventListener('load', async function () {
     });
 });
 
-    // 處理圖片替換和刪除等功能的函數...
-});
-
     
     
     // 處理圖片替換和刪除
