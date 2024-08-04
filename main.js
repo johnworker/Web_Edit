@@ -1,61 +1,55 @@
-// 確保在使用 supabase 之前正確初始化
-window.addEventListener('load', async function () {
-    // 初始化 Supabase 客戶端
-    const supabaseUrl = 'https://drpbpxkgediogjcsezvg.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+// 初始化 Supabase 客戶端
+const supabaseUrl = 'https://drpbpxkgediogjcsezvg.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+window.addEventListener('load', async function () {
     try {
         // 從 Supabase 取得初始內容
-        const { data, error } = await supabase.from('postedit').select('*');
+        const { data, error } = await supabase.from('posts').select('*');
         if (error) {
             console.error('錯誤:', error);
             return;
         }
 
-        if (data.length > 0) {
+        if (data && data.length > 0) {
             const postData = data[0]; // 假設只有一條資料
-
             // 設置頁面內容
-            document.querySelector('.today_mark').innerHTML = postData.title;
-            document.querySelector('.post_header').innerHTML = postData.postHeader;
-            document.querySelector('.post_images').innerHTML = postData.postImages;
-
-            // 為動態添加的圖片設置事件處理
-            document.querySelectorAll('.post_images img').forEach(setupImageActions);
-            document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+            document.querySelector('.today_mark').innerHTML = postData.title || '今日記錄重要事項';
+            document.querySelector('.post_header').innerHTML = postData.postHeader || '';
+            document.querySelector('.post_images').innerHTML = postData.postImages || '';
         }
     } catch (err) {
         console.error('加載內容時發生錯誤:', err);
     }
-
-    document.getElementById('saveButton').addEventListener('click', async function () {
-        const updatedContent = {
-            title: document.querySelector('.today_mark').innerHTML,
-            postHeader: document.querySelector('.post_header').innerHTML,
-            postImages: document.querySelector('.post_images').innerHTML
-        };
-
-        try {
-            // 發送資料到 Supabase
-            const { data, error } = await supabase
-                .from('postedit')
-                .update(updatedContent)
-                .eq('id', 1); // 假設資料表中的資料ID為1
-
-            if (error) {
-                console.error('保存失敗:', error);
-                alert(`保存失敗：${error.message || '未知錯誤'}`);
-            } else {
-                alert('變更已成功保存！');
-            }
-        } catch (err) {
-            console.error('捕捉到的錯誤:', err);
-            alert(`發生錯誤：${err.message || '未知錯誤'}`);
-        }
-    });
 });
 
+// 保存按鈕的事件監聽器
+document.getElementById('saveButton').addEventListener('click', async function () {
+    const updatedContent = {
+        title: document.querySelector('.today_mark').innerHTML,
+        postHeader: document.querySelector('.post_header').innerHTML,
+        postImages: document.querySelector('.post_images').innerHTML
+    };
+
+    try {
+        // 發送資料到 Supabase
+        const { data, error } = await supabase
+            .from('posts')
+            .update(updatedContent)
+            .eq('id', 1); // 假設資料表中的資料ID為1
+
+        if (error) {
+            console.error('保存失敗:', error);
+            alert(`保存失敗：${error.message || '未知錯誤'}`);
+        } else {
+            alert('變更已成功保存！');
+        }
+    } catch (err) {
+        console.error('捕捉到的錯誤:', err);
+        alert(`發生錯誤：${err.message || '未知錯誤'}`);
+    }
+});
     
     
     // 處理圖片替換和刪除

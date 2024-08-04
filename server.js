@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { createClient } = require('@supabase/supabase-js');
 const cors = require('cors');
-const app = express();
+const { createClient } = require('@supabase/supabase-js');
 
-const supabaseUrl = 'https://drpbpxkgediogjcsezvg.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
+const app = express();
+const supabaseUrl = process.env.SUPABASE_URL || 'https://drpbpxkgediogjcsezvg.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.use(cors());
@@ -16,7 +16,7 @@ app.post('/save', async (req, res) => {
 
   try {
     const { data, error } = await supabase
-      .from('postedit')
+      .from('posts')
       .update({ title, postHeader, postImages })
       .eq('id', 1);
 
