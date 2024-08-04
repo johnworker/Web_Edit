@@ -5,24 +5,28 @@ window.addEventListener('load', async function () {
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRycGJweGtnZWRpb2dqY3NlenZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI1OTEzNzQsImV4cCI6MjAzODE2NzM3NH0.ELerknT6OGxn1_JhYYB6inlIMZMfRWaMGtnhBmd_7g0';
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    // 從 Supabase 取得初始內容
-    const { data, error } = await supabase.from('postedit').select('*');
-    if (error) {
-        console.error('錯誤:', error);
-        return;
-    }
-    
-    if (data.length > 0) {
-        const postData = data[0]; // 假設只有一條資料
+    try {
+        // 從 Supabase 取得初始內容
+        const { data, error } = await supabase.from('posts').select('*');
+        if (error) {
+            console.error('錯誤:', error);
+            return;
+        }
 
-        // 設置頁面內容
-        document.querySelector('.today_mark').innerHTML = postData.title;
-        document.querySelector('.post_header').innerHTML = postData.postHeader;
-        document.querySelector('.post_images').innerHTML = postData.postImages;
+        if (data.length > 0) {
+            const postData = data[0]; // 假設只有一條資料
 
-        // 為動態添加的圖片設置事件處理
-        document.querySelectorAll('.post_images img').forEach(setupImageActions);
-        document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+            // 設置頁面內容
+            document.querySelector('.today_mark').innerHTML = postData.title;
+            document.querySelector('.post_header').innerHTML = postData.postHeader;
+            document.querySelector('.post_images').innerHTML = postData.postImages;
+
+            // 為動態添加的圖片設置事件處理
+            document.querySelectorAll('.post_images img').forEach(setupImageActions);
+            document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+        }
+    } catch (err) {
+        console.error('加載內容時發生錯誤:', err);
     }
 
     document.getElementById('saveButton').addEventListener('click', async function () {
@@ -32,18 +36,25 @@ window.addEventListener('load', async function () {
             postImages: document.querySelector('.post_images').innerHTML
         };
 
-        // 發送資料到 Supabase
-        const { data, error } = await supabase
-            .from('posts')
-            .update(updatedContent)
-            .eq('id', 1); // 假設資料表中的資料ID為1
+        try {
+            // 發送資料到 Supabase
+            const { data, error } = await supabase
+                .from('posts')
+                .update(updatedContent)
+                .eq('id', 1); // 假設資料表中的資料ID為1
 
-        if (error) {
-            console.error('保存失敗:', error);
-        } else {
-            alert('變更已成功保存！');
+            if (error) {
+                console.error('保存失敗:', error);
+                alert(`保存失敗：${error.message || '未知錯誤'}`);
+            } else {
+                alert('變更已成功保存！');
+            }
+        } catch (err) {
+            console.error('捕捉到的錯誤:', err);
+            alert(`發生錯誤：${err.message || '未知錯誤'}`);
         }
     });
+});
 
     // 處理圖片替換和刪除等功能的函數...
 });
