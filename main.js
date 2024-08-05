@@ -224,7 +224,7 @@ window.addEventListener('load', async function () {
     ;
 });
 
-// 新增影片設置
+// 新增影片設置處理
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
     videoUpload.click();
@@ -233,21 +233,39 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
         for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
             reader.onload = function () {
+                // 創建影片容器
+                const videoContainer = document.createElement('div');
+                videoContainer.classList.add('video-container');
+
+                // 創建影片元素
                 const newVideo = document.createElement('video');
                 newVideo.src = reader.result;
                 newVideo.controls = true;
                 newVideo.style.width = '300px';
                 newVideo.style.height = '200px';
 
+                // 創建刪除按鈕
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '刪除';
+                deleteButton.classList.add('delete-video-button');
+                deleteButton.onclick = function () {
+                    videoContainer.remove();
+                };
+
+                // 將影片和刪除按鈕添加到容器中
+                videoContainer.appendChild(newVideo);
+                videoContainer.appendChild(deleteButton);
+
+                // 添加到選定的貼文部分
                 const sectionId = document.getElementById('sectionSelector').value;
                 const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
 
                 if (targetSection && targetSection.children.length < 2) {
-                    targetSection.appendChild(newVideo); // 添加到當前行
+                    targetSection.appendChild(videoContainer); // 添加到當前行
                 } else {
                     const newRow = document.createElement('div');
                     newRow.classList.add('row');
-                    newRow.appendChild(newVideo); // 新建行並添加影片
+                    newRow.appendChild(videoContainer); // 新建行並添加影片
                     document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
                 }
             };
