@@ -65,10 +65,21 @@ License URI: mit
   cursor: pointer;
   position: fixed;
   right: 10px;
-  bottom: 210px;
+  bottom: 280px;
 }
 
 #loadButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  bottom: 210px;
+}
+
+#addVideoButton {
   display: block;
   margin: 20px auto;
   padding: 10px;
