@@ -223,3 +223,35 @@ window.addEventListener('load', async function () {
     document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
     ;
 });
+
+// 新增影片設置
+document.getElementById('addVideoButton').addEventListener('click', function () {
+    const videoUpload = document.getElementById('videoUpload');
+    videoUpload.click();
+    videoUpload.onchange = function (event) {
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const newVideo = document.createElement('video');
+                newVideo.src = reader.result;
+                newVideo.controls = true;
+                newVideo.style.width = '300px';
+                newVideo.style.height = '200px';
+
+                const sectionId = document.getElementById('sectionSelector').value;
+                const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
+
+                if (targetSection && targetSection.children.length < 2) {
+                    targetSection.appendChild(newVideo); // 添加到當前行
+                } else {
+                    const newRow = document.createElement('div');
+                    newRow.classList.add('row');
+                    newRow.appendChild(newVideo); // 新建行並添加影片
+                    document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
+                }
+            };
+            reader.readAsDataURL(files[i]);
+        }
+    };
+});
