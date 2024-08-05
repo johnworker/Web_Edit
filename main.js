@@ -122,7 +122,7 @@ window.addEventListener('load', async function () {
                 reader.readAsDataURL(event.target.files[0]);
             };
         } else if (action === '刪') {
-            img.remove();
+            removeImageAndRearrange(img);
         } else if (action === '調') {
             const newWidth = prompt('輸入新的寬度（例如：150px 或 50%）:');
             const newHeight = prompt('輸入新的高度（例如：150px 或 50%）:');
@@ -131,6 +131,34 @@ window.addEventListener('load', async function () {
             if (newHeight) img.style.height = newHeight;
             if (newPosition) img.style.float = newPosition;
         }
+    }
+
+    function removeImageAndRearrange(img) {
+        const row = img.parentElement;
+        const section = row.parentElement;
+    
+        img.remove(); // 移除圖片
+    
+        // 將所有剩下的圖片集合起來
+        const images = section.querySelectorAll('img');
+        const allImages = Array.from(images);
+    
+        // 清空現有的行
+        section.innerHTML = '';
+    
+        // 重新排列圖片
+        let newRow;
+        allImages.forEach((image, index) => {
+            if (index % 2 === 0) { // 每兩個圖片新建一行
+                newRow = document.createElement('div');
+                newRow.classList.add('row');
+                section.appendChild(newRow);
+            }
+            newRow.appendChild(image);
+        });
+    
+        // 重新設置每個圖片的操作
+        allImages.forEach(setupImageActions);
     }
 
     document.querySelectorAll('.post_images img').forEach(setupImageActions);
