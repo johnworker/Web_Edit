@@ -26,11 +26,11 @@ License URI: mit
     margin-top: 20px;
   }
 }
-.post_section .post_header h2 {
+.post_section .post_header_one h2, .post_section .post_header_two h2, .post_section .post_header_three h2 {
   font-size: 24px;
   color: #333;
 }
-.post_section .post_header p {
+.post_section .post_header_one p, .post_section .post_header_two p, .post_section .post_header_three p {
   font-size: 16px;
   color: #666;
 }

@@ -18,12 +18,20 @@ window.addEventListener('load', async function () {
 
             // 設置頁面內容
             document.querySelector('.today_mark').innerHTML = postData.title;
-            document.querySelector('.post_header').innerHTML = postData.postHeader;
-            document.querySelector('.post_images').innerHTML = postData.postImages;
+            document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne;
+            document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo;
+            document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree;
+            document.querySelector('.post_images_one').innerHTML = postData.postImagesOne;
+            document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo;
+            document.querySelector('.post_images_three').innerHTML = postData.postImagesThree;
 
             // 為動態添加的圖片設置事件處理
-            document.querySelectorAll('.post_images img').forEach(setupImageActions);
-            document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+            document.querySelectorAll('.post_images_one img').forEach(setupImageActions);
+            document.querySelectorAll('.post_images_one img').forEach(setupDragAndDrop);
+            document.querySelectorAll('.post_images_two img').forEach(setupImageActions);
+            document.querySelectorAll('.post_images_two img').forEach(setupDragAndDrop);
+            document.querySelectorAll('.post_images_three img').forEach(setupImageActions);
+            document.querySelectorAll('.post_images_three img').forEach(setupDragAndDrop);
         }
     } catch (err) {
         console.error('加載內容時發生錯誤:', err);
@@ -43,8 +51,12 @@ window.addEventListener('load', async function () {
                 const postData = data[0]; // 假設只有一條資料
                 // 設置頁面內容
                 document.querySelector('.today_mark').innerHTML = postData.title || '';
-                document.querySelector('.post_header').innerHTML = postData.postHeader || '';
-                document.querySelector('.post_images').innerHTML = postData.postImages || '';
+                document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne || '';
+                document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo || '';
+                document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree || '';
+                document.querySelector('.post_images_one').innerHTML = postData.postImagesOne || '';
+                document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo || '';
+                document.querySelector('.post_images_three').innerHTML = postData.postImagesThree || '';
             }
         } catch (err) {
             console.error('讀取資料時發生錯誤:', err);
@@ -61,8 +73,12 @@ window.addEventListener('load', async function () {
     document.getElementById('saveButton').addEventListener('click', async function () {
         const updatedContent = {
             title: document.querySelector('.today_mark').innerHTML,
-            postHeader: document.querySelector('.post_header').innerHTML,
-            postImages: document.querySelector('.post_images').innerHTML
+            postHeaderOne: document.querySelector('.post_header_one').innerHTML,
+            postHeaderTwo: document.querySelector('.post_header_two').innerHTML,
+            postHeaderThree: document.querySelector('.post_header_three').innerHTML,
+            postImagesOne: document.querySelector('.post_images_one').innerHTML,
+            postImagesTwo: document.querySelector('.post_images_two').innerHTML,
+            postImagesThree: document.querySelector('.post_images').innerHTML
         };
 
         try {
@@ -128,7 +144,6 @@ window.addEventListener('load', async function () {
     }
 
     document.querySelectorAll('.post_images img').forEach(setupImageActions);
-
     document.getElementById('addImageButton').addEventListener('click', function () {
         const imageUpload = document.getElementById('imageUpload');
         imageUpload.click();
@@ -215,5 +230,4 @@ window.addEventListener('load', async function () {
     }
 
     document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
-    ;
 });
