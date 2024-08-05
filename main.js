@@ -21,17 +21,11 @@ window.addEventListener('load', async function () {
             document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne;
             document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo;
             document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree;
-            document.querySelector('.post_images_one').innerHTML = postData.postImagesOne;
-            document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo;
-            document.querySelector('.post_images_three').innerHTML = postData.postImagesThree;
+            document.querySelector('.post_images').innerHTML = postData.postImages;
 
             // 為動態添加的圖片設置事件處理
-            document.querySelectorAll('.post_images_one img').forEach(setupImageActions);
-            document.querySelectorAll('.post_images_one img').forEach(setupDragAndDrop);
-            document.querySelectorAll('.post_images_two img').forEach(setupImageActions);
-            document.querySelectorAll('.post_images_two img').forEach(setupDragAndDrop);
-            document.querySelectorAll('.post_images_three img').forEach(setupImageActions);
-            document.querySelectorAll('.post_images_three img').forEach(setupDragAndDrop);
+            document.querySelectorAll('.post_images img').forEach(setupImageActions);
+            document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
         }
     } catch (err) {
         console.error('加載內容時發生錯誤:', err);
@@ -54,9 +48,7 @@ window.addEventListener('load', async function () {
                 document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne || '';
                 document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo || '';
                 document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree || '';
-                document.querySelector('.post_images_one').innerHTML = postData.postImagesOne || '';
-                document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo || '';
-                document.querySelector('.post_images_three').innerHTML = postData.postImagesThree || '';
+                document.querySelector('.post_images').innerHTML = postData.postImages || '';
             }
         } catch (err) {
             console.error('讀取資料時發生錯誤:', err);
@@ -76,9 +68,7 @@ window.addEventListener('load', async function () {
             postHeaderOne: document.querySelector('.post_header_one').innerHTML,
             postHeaderTwo: document.querySelector('.post_header_two').innerHTML,
             postHeaderThree: document.querySelector('.post_header_three').innerHTML,
-            postImagesOne: document.querySelector('.post_images_one').innerHTML,
-            postImagesTwo: document.querySelector('.post_images_two').innerHTML,
-            postImagesThree: document.querySelector('.post_images').innerHTML
+            postImages: document.querySelector('.post_images').innerHTML
         };
 
         try {
@@ -144,6 +134,7 @@ window.addEventListener('load', async function () {
     }
 
     document.querySelectorAll('.post_images img').forEach(setupImageActions);
+
     document.getElementById('addImageButton').addEventListener('click', function () {
         const imageUpload = document.getElementById('imageUpload');
         imageUpload.click();
@@ -230,4 +221,5 @@ window.addEventListener('load', async function () {
     }
 
     document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+    ;
 });
