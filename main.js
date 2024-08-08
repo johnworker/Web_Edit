@@ -192,7 +192,7 @@ window.addEventListener('load', async function () {
                     newImg.style.height = '200px';
 
                     const sectionId = document.getElementById('sectionSelector').value;
-                    const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
+                    const targetSection = document.querySelector(`#${sectionId} .post_images_one .post_images_two .post_images_three .row:last-child`);
 
                     if (targetSection && targetSection.children.length < 2) {
                         targetSection.appendChild(newImg); // 添加到當前行
@@ -200,7 +200,7 @@ window.addEventListener('load', async function () {
                         const newRow = document.createElement('div');
                         newRow.classList.add('row');
                         newRow.appendChild(newImg); // 新建行並添加圖片
-                        document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
+                        document.querySelector(`#${sectionId} .post_images_one .post_images_two .post_images_three`).appendChild(newRow);
                     }
 
                     setupImageActions(newImg);
@@ -262,7 +262,7 @@ window.addEventListener('load', async function () {
         });
     }
 
-    document.querySelectorAll('.post_images img').forEach(setupDragAndDrop);
+    document.querySelectorAll('.post_images_one .post_images_two .post_images_three').forEach(setupDragAndDrop);
     ;
 });
 
