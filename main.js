@@ -172,10 +172,7 @@ window.addEventListener('load', async function () {
         allImages.forEach(setupImageActions);
     }
 
-    document.querySelectorAll('.post_images_one img').forEach(setupImageActions);
-    document.querySelectorAll('.post_images_two img').forEach(setupImageActions);
-    document.querySelectorAll('.post_images_three img').forEach(setupImageActions);
-
+    document.querySelectorAll('.post_images img').forEach(setupImageActions);
 
     document.getElementById('addImageButton').addEventListener('click', function () {
         const imageUpload = document.getElementById('imageUpload');
