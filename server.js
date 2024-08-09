@@ -12,12 +12,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/save', async (req, res) => {
-  const { title, postHeaderOne, postHeaderTwo, postHeaderThree, postImagesOne, postImagesTwo, postImagesThree} = req.body;
+  const { title, postHeaderOne, postHeaderTwo, postHeaderThree, postImagesOne, postImagesTwo, postImagesThree, postVideosOne, postVideosTwo, postVideosThree} = req.body;
 
   try {
     const { data, error } = await supabase
       .from('posts')
-      .update({ title, postHeaderOne, postHeaderTwo, postHeaderThree, postImagesOne, postImagesTwo, postImagesThree })
+      .update({ title, postHeaderOne, postHeaderTwo, postHeaderThree, postImagesOne, postImagesTwo, postImagesThree, postVideosOne, postVideosTwo, postVideosThree})
       .eq('id', 1);
 
     if (error) throw error;

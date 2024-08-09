@@ -24,6 +24,9 @@ window.addEventListener('load', async function () {
             document.querySelector('.post_images_one').innerHTML = postData.postImagesOne;
             document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo;
             document.querySelector('.post_images_three').innerHTML = postData.postImagesThree;
+            document.querySelector('.post_videos_one').innerHTML = postData.postVideosOne;
+            document.querySelector('.post_videos_two').innerHTML = postData.postVideosTwo;
+            document.querySelector('.post_videos_three').innerHTML = postData.postVideosThree;
 
 
             // 為動態添加的圖片設置事件處理
@@ -58,6 +61,9 @@ window.addEventListener('load', async function () {
                 document.querySelector('.post_images_one').innerHTML = postData.postImagesOne || '';
                 document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo || '';
                 document.querySelector('.post_images_three').innerHTML = postData.postImagesThree || '';
+                document.querySelector('.post_videos_one')?.innerHTML = postData.postVideosOne || '',
+                document.querySelector('.post_videos_two')?.innerHTML = postData.postVideosTwo || '',
+                document.querySelector('.post_videos_three')?.innerHTML = postData.postVideosThree || ''
             }
         } catch (err) {
             console.error('讀取資料時發生錯誤:', err);
@@ -80,9 +86,9 @@ window.addEventListener('load', async function () {
             postImagesOne: document.querySelector('.post_images_one').innerHTML,
             postImagesTwo: document.querySelector('.post_images_two').innerHTML,
             postImagesThree: document.querySelector('.post_images_three').innerHTML,
-            postVideosOne: document.querySelector('.post_videos_one')?.innerHTML || '',
-            postVideosTwo: document.querySelector('.post_videos_two')?.innerHTML || '',
-            postVideosThree: document.querySelector('.post_videos_three')?.innerHTML || ''
+            postVideosOne: document.querySelector('.post_videos_one')?.innerHTML,
+            postVideosTwo: document.querySelector('.post_videos_two')?.innerHTML,
+            postVideosThree: document.querySelector('.post_videos_three')?.innerHTML
         };
 
         try {
