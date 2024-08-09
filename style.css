@@ -54,6 +54,7 @@ License URI: mit
 @media screen and (max-width: 767px) {
   .post_section .post_images img {
     width: 180px;
+    height: 180px;
   }
 }
 
