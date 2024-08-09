@@ -185,12 +185,14 @@ window.addEventListener('load', async function () {
                     const newImg = document.createElement('img');
                     newImg.src = reader.result;
                     newImg.contentEditable = true;
-                    newImg.style.width = '200px';
-                    newImg.style.height = '200px';
-
+    
+                    // 使用 JavaScript 設置初始寬度和高度
+                    newImg.style.width = window.innerWidth > 768 ? '200px' : '180px';
+                    newImg.style.height = window.innerWidth > 768 ? '200px' : '180px';
+    
                     const sectionId = document.getElementById('sectionSelector').value;
                     const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
-
+    
                     if (targetSection && targetSection.children.length < 2) {
                         targetSection.appendChild(newImg); // 添加到當前行
                     } else {
@@ -199,7 +201,7 @@ window.addEventListener('load', async function () {
                         newRow.appendChild(newImg); // 新建行並添加圖片
                         document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
                     }
-
+    
                     setupImageActions(newImg);
                     setupDragAndDrop(newImg);
                 };
@@ -207,6 +209,7 @@ window.addEventListener('load', async function () {
             }
         };
     });
+    
 
     function setupDragAndDrop(img) {
         img.setAttribute('draggable', true);
