@@ -79,7 +79,10 @@ window.addEventListener('load', async function () {
             postHeaderThree: document.querySelector('.post_header_three').innerHTML,
             postImagesOne: document.querySelector('.post_images_one').innerHTML,
             postImagesTwo: document.querySelector('.post_images_two').innerHTML,
-            postImagesThree: document.querySelector('.post_images_three').innerHTML
+            postImagesThree: document.querySelector('.post_images_three').innerHTML,
+            postVideosOne: document.querySelector('.post_videos_one')?.innerHTML || '',
+            postVideosTwo: document.querySelector('.post_videos_two')?.innerHTML || '',
+            postVideosThree: document.querySelector('.post_videos_three')?.innerHTML || ''
         };
 
         try {
@@ -147,16 +150,16 @@ window.addEventListener('load', async function () {
     function removeImageAndRearrange(img) {
         const row = img.parentElement;
         const section = row.parentElement;
-    
+
         img.remove(); // 移除圖片
-    
+
         // 將所有剩下的圖片集合起來
         const images = section.querySelectorAll('img');
         const allImages = Array.from(images);
-    
+
         // 清空現有的行
         section.innerHTML = '';
-    
+
         // 重新排列圖片
         let newRow;
         allImages.forEach((image, index) => {
@@ -167,7 +170,7 @@ window.addEventListener('load', async function () {
             }
             newRow.appendChild(image);
         });
-    
+
         // 重新設置每個圖片的操作
         allImages.forEach(setupImageActions);
     }
