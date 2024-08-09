@@ -21,9 +21,9 @@ window.addEventListener('load', async function () {
             document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne;
             document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo;
             document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree;
-            document.querySelector('.post_images_one').innerHTML = postData.postImages;
-            document.querySelector('.post_images_two').innerHTML = postData.postImages;
-            document.querySelector('.post_images_three').innerHTML = postData.postImages;
+            document.querySelector('.post_images_one').innerHTML = postData.postImagesOne;
+            document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo;
+            document.querySelector('.post_images_three').innerHTML = postData.postImagesThree;
 
 
             // 為動態添加的圖片設置事件處理
