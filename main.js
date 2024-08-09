@@ -185,8 +185,8 @@ window.addEventListener('load', async function () {
                     const newImg = document.createElement('img');
                     newImg.src = reader.result;
                     newImg.contentEditable = true;
-                    newImg.style.width = '200px';
-                    newImg.style.height = '200px';
+                    newImg.style.width = '180px';
+                    newImg.style.height = '180px';
 
                     const sectionId = document.getElementById('sectionSelector').value;
                     const targetSection = document.querySelector(`#${sectionId} .post_images .row:last-child`);
