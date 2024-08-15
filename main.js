@@ -21,6 +21,9 @@ window.addEventListener('load', async function () {
             document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne;
             document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo;
             document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree;
+            document.querySelector('.post_title_one').innerHTML = postData.postTitleOne;
+            document.querySelector('.post_title_two').innerHTML = postData.postTitleTwo;
+            document.querySelector('.post_title_three').innerHTML = postData.postTitleThree;
             document.querySelector('.post_images_one').innerHTML = postData.postImagesOne;
             document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo;
             document.querySelector('.post_images_three').innerHTML = postData.postImagesThree;
@@ -55,6 +58,9 @@ window.addEventListener('load', async function () {
                 document.querySelector('.post_header_one').innerHTML = postData.postHeaderOne || '';
                 document.querySelector('.post_header_two').innerHTML = postData.postHeaderTwo || '';
                 document.querySelector('.post_header_three').innerHTML = postData.postHeaderThree || '';
+                document.querySelector('.post_title_one').innerHTML = postData.postTitleOne || '';
+                document.querySelector('.post_title_two').innerHTML = postData.postTitleTwo || '';
+                document.querySelector('.post_title_three').innerHTML = postData.postTitleThree || '';
                 document.querySelector('.post_images_one').innerHTML = postData.postImagesOne || '';
                 document.querySelector('.post_images_two').innerHTML = postData.postImagesTwo || '';
                 document.querySelector('.post_images_three').innerHTML = postData.postImagesThree || '';
@@ -77,6 +83,9 @@ window.addEventListener('load', async function () {
             postHeaderOne: document.querySelector('.post_header_one').innerHTML,
             postHeaderTwo: document.querySelector('.post_header_two').innerHTML,
             postHeaderThree: document.querySelector('.post_header_three').innerHTML,
+            postTitleOne: document.querySelector('.post_title_one').innerHTML,
+            postTitleTwo: document.querySelector('.post_title_two').innerHTML,
+            postTitleThree: document.querySelector('.post_title_three').innerHTML,
             postImagesOne: document.querySelector('.post_images_one').innerHTML,
             postImagesTwo: document.querySelector('.post_images_two').innerHTML,
             postImagesThree: document.querySelector('.post_images_three').innerHTML
