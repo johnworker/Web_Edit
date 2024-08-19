@@ -275,7 +275,14 @@ window.addEventListener('load', async function () {
     ;
 });
 
-// 新增影片設置處理
+
+// 確保 supabase 已正確初始化
+if (!supabase) {
+    console.error('Supabase 初始化失敗');
+    return;
+}
+
+// 影片上傳邏輯
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
     videoUpload.click();
@@ -286,7 +293,7 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
             const file = files[i];
             const fileName = `videos/${new Date().getTime()}_${file.name}`; // 生成唯一的檔名
             try {
-                // 確保 supabase 物件已初始化並使用
+                // 上傳影片到 Supabase 儲存桶
                 let { data, error } = await supabase.storage.from('videos').upload(fileName, file);
                 if (error) {
                     console.error('影片上傳失敗:', error);
