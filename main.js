@@ -279,31 +279,46 @@ window.addEventListener('load', async function () {
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
     videoUpload.click();
-    videoUpload.onchange = function (event) {
+    videoUpload.onchange = async function (event) {
         const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                // 創建影片容器
+            const file = files[i];
+            const fileName = `videos/${new Date().getTime()}_${file.name}`; // 生成唯一的檔名
+            try {
+                // 上傳影片到 Supabase 儲存桶
+                let { data, error } = await supabase.storage.from('videos').upload(fileName, file);
+                if (error) {
+                    console.error('影片上傳失敗:', error);
+                    alert(`影片上傳失敗：${error.message || '未知錯誤'}`);
+                    return;
+                }
+
+                // 取得影片的公開 URL
+                const { publicURL, error: urlError } = supabase.storage.from('videos').getPublicUrl(fileName);
+                if (urlError) {
+                    console.error('取得影片 URL 失敗:', urlError);
+                    alert(`取得影片 URL 失敗：${urlError.message || '未知錯誤'}`);
+                    return;
+                }
+
+                // 創建影片元素並顯示在頁面上
                 const videoContainer = document.createElement('div');
                 videoContainer.classList.add('video-container');
-
-                // 創建影片元素
                 const newVideo = document.createElement('video');
-                newVideo.src = reader.result;
+                newVideo.src = publicURL;
                 newVideo.controls = true;
-                newVideo.style.width = '210px';
-                newVideo.style.height = '140px';
-
+                newVideo.style.width = '300px';
+                newVideo.style.height = '200px';
+                
                 // 創建刪除按鈕
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = '刪除';
                 deleteButton.classList.add('delete-video-button');
                 deleteButton.onclick = function () {
                     videoContainer.remove();
+                    // 可以在這裡添加刪除影片的 Supabase 儲存邏輯
                 };
 
-                // 將影片和刪除按鈕添加到容器中
                 videoContainer.appendChild(newVideo);
                 videoContainer.appendChild(deleteButton);
 
@@ -319,8 +334,10 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
                     newRow.appendChild(videoContainer); // 新建行並添加影片
                     document.querySelector(`#${sectionId} .post_images`).appendChild(newRow);
                 }
-            };
-            reader.readAsDataURL(files[i]);
+            } catch (err) {
+                console.error('影片上傳處理時發生錯誤:', err);
+                alert(`上傳影片時發生錯誤：${err.message || '未知錯誤'}`);
+            }
         }
     };
 });
