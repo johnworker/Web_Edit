@@ -307,8 +307,8 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
                 const newVideo = document.createElement('video');
                 newVideo.src = publicURL;
                 newVideo.controls = true;
-                newVideo.style.width = '300px';
-                newVideo.style.height = '200px';
+                newVideo.style.width = '210px';
+                newVideo.style.height = '140px';
                 
                 // 創建刪除按鈕
                 const deleteButton = document.createElement('button');
