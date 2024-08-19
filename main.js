@@ -276,12 +276,6 @@ window.addEventListener('load', async function () {
 });
 
 
-// 確保 supabase 已正確初始化
-if (!supabase) {
-    console.error('Supabase 初始化失敗');
-    return;
-}
-
 // 影片上傳邏輯
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
