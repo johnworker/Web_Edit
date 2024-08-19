@@ -279,13 +279,14 @@ window.addEventListener('load', async function () {
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
     videoUpload.click();
+
     videoUpload.onchange = async function (event) {
         const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             const fileName = `videos/${new Date().getTime()}_${file.name}`; // 生成唯一的檔名
             try {
-                // 上傳影片到 Supabase 儲存桶
+                // 確保 supabase 物件已初始化並使用
                 let { data, error } = await supabase.storage.from('videos').upload(fileName, file);
                 if (error) {
                     console.error('影片上傳失敗:', error);
@@ -309,7 +310,7 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
                 newVideo.controls = true;
                 newVideo.style.width = '210px';
                 newVideo.style.height = '140px';
-                
+
                 // 創建刪除按鈕
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = '刪除';
