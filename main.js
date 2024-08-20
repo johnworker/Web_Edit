@@ -275,12 +275,10 @@ window.addEventListener('load', async function () {
     ;
 });
 
-
-// 影片上傳邏輯
+// 新增影片設置處理
 document.getElementById('addVideoButton').addEventListener('click', function () {
     const videoUpload = document.getElementById('videoUpload');
     videoUpload.click();
-
     videoUpload.onchange = async function (event) {
         const files = event.target.files;
         for (let i = 0; i < files.length; i++) {
@@ -311,7 +309,7 @@ document.getElementById('addVideoButton').addEventListener('click', function () 
                 newVideo.controls = true;
                 newVideo.style.width = '210px';
                 newVideo.style.height = '140px';
-
+                
                 // 創建刪除按鈕
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = '刪除';
