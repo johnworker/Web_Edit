@@ -28,20 +28,6 @@ app.post('/save', async (req, res) => {
   }
 });
 
-app.delete('/delete-video', async (req, res) => {
-  const { videoPath } = req.body;
-
-  try {
-    const { data, error } = await supabase.storage.from('videos').remove([videoPath]);
-    if (error) throw error;
-
-    res.status(200).send('影片已成功刪除！');
-  } catch (error) {
-    console.error('錯誤:', error);
-    res.status(500).send(`錯誤: ${error.message}`);
-  }
-});
-
 app.listen(3000, () => {
   console.log('伺服器正在運行...');
 });
